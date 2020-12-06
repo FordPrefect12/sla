@@ -22,3 +22,35 @@ C = nx.from_pandas_edgelist(edge_data2, source = 'Recomendado1', target = 'Recom
 U = nx.compose(A, B)
 Z = nx.compose(U,C)
 ```
+
+```python
+nx.draw_shell(Z, with_labels=True)
+```
+
+```python
+print(nx.info(Z))
+```
+
+```python
+print(nx.nodes(Z))
+```
+
+```python
+Z.add_node('Renan', weight= 0.4)
+Z.add_node('Leonardo', weight= 0.6)
+Z.add_node('Felipe', weight= 0.2)
+Z.add_node('Bruna', weight= 0.1)
+Z.add_node('Fabiano', weight= 0.4)
+Z.add_node('Roberto', weight= 0.1)
+Z.add_node('Rodrigo', weight= 0)
+Z.add_node('Ana', weight= 0)
+Z.add_node('Alice', weight= 0)
+Z.add_node('Arthur', weight= 0)
+Z.add_node('Pedro', weight= 0)
+print(Z.nodes.data())
+```
+
+
+
+
+

@@ -23,6 +23,16 @@ nx.draw(G, with_labels=1)
 ```
 ![Exemplo 1](https://github.com/FordPrefect12/Projeto---NetworkX.github.io/blob/main/Exemplo%201.png)
 
+
+
+
+
+
+
+
+
+
+
 ```python
 print(nx.info(G)) # Alternativa para não precisar usar um comando para cada informação presente em um grafo
 ```

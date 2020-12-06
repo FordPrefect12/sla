@@ -11,6 +11,7 @@ Agora vamos para o collab apresentar alguns comandos para facilitar o entendimen
 ## Exemplo 1:
 - Os vértices de um grafo são os nodes
 - A relação entre os nodes são os edges
+
 ```python
 import networkx as nx
 G = nx.Graph()
@@ -21,16 +22,8 @@ G.add_edge('N1', 'N2') # Adicionar uma relação entre o node 'N1' e 'N2'
 G.add_edge('N3', 'N4') # Adicionar uma relação entre o node 'N3' e um node que até agora ainda não existia
 nx.draw(G, with_labels=1)
 ```
+
 ![Exemplo 1](https://github.com/FordPrefect12/Projeto---NetworkX.github.io/blob/main/Exemplo%201.png)
-
-
-
-
-
-
-
-
-
 
 
 ```python

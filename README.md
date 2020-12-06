@@ -211,3 +211,168 @@ print(nx.info(H))
 print(H.nodes.data())
 ```
     [('Eduardo', {}), ('Arthur', {'weight': 0}), ('Rodrigo', {'weight': 0}), ('Ana', {'weight': 0}), ('Alice', {'weight': 0}), ('Pedro', {'weight': 0}), ('Renan', {'weight': 0.4}), ('Leonardo', {'weight': 0.6}), ('Felipe', {'weight': 0.2}), ('Bruna', {'weight': 0.1}), ('Fabiano', {'weight': 0.4}), ('Roberto', {'weight': 0.1})]
+
+## Exemplo Aplicado:
+Vamos importar nosso dataset para manipulação dos dados
+```python
+link = ("https://github.com/dnllvrvz/Social-Network-Dataset/blob/master/Social%20Network%20Dataset.xlsx?raw=true")
+```
+
+importando o pandas
+```python
+import pandas as pd
+```
+
+```python
+pd.read_excel(link)
+```
+    	Label	Type	School (ID)	Answered the form
+        0	S-c1b610	Student	27	Yes
+        1	S-4985b3	Student	25	Yes
+        2	S-376418	Student	67	Yes
+        3	S-d00f38	Student	24	Yes
+        4	S-e538e3	Student	30	Yes
+        ...	...	...	...	...
+        1188	S-64b594	Student	25	No
+        1189	S-42ff75	Student	49	No
+        1190	S-87c031	Student	4	No
+        1191	S-cd9523	Student	12	No
+        1192	S-1a36bb	Student	58	No
+        1193 rows × 4 columns
+
+DICA MESTRE: O python mostra um cardapio de acordo com a função pedida
+```python
+?pd.read_excel
+```
+    Signature:
+    pd.read_excel(
+    io,
+    sheet_name=0,
+    header=0,
+    names=None,
+    index_col=None,
+    usecols=None,
+    squeeze=False,
+    dtype=None,
+    engine=None,
+    converters=None,
+    true_values=None,
+    false_values=None,
+    skiprows=None,
+    nrows=None,
+    na_values=None,
+    keep_default_na=True,
+    na_filter=True,
+    verbose=False,
+    parse_dates=False,
+    date_parser=None,
+    thousands=None,
+    comment=None,
+    skipfooter=0,
+    convert_float=True,
+    mangle_dupe_cols=True,
+    )
+    (...)
+    >>> pd.read_excel('tmp.xlsx', index_col=0, comment='#')  # doctest: +SKIP
+      Name  Value
+    0  string1    1.0
+    1  string2    2.0
+    2     None    NaN
+    File:      c:\users\rodri\appdata\local\programs\python\python38-32\lib\site-packages\pandas\io\excel\_base.py
+    Type:      function
+
+```python
+data = pd.read_excel(link, sheet_name=['Elements','Connections'])
+```
+
+```python
+node_data = data['Elements']
+edge_data = data['Connections']
+```
+
+```python
+edge_data.head(3)
+```
+    	From	To	Type	Weight	When
+        0	S-c1b610	S-7d9053	Other	1.0	2012.0
+        1	S-4985b3	S-e7dad4	School	1.0	2015.0
+        2	S-376418	S-ab3070	School	1.0	2012.0
+
+```python
+import networkx as nx
+```
+
+```python
+graph = nx.from_pandas_edgeliste(dge_data, source='From', target='To', edge_attr=['Weight','When'])
+```
+
+```python
+import matplotlib as plt
+```
+
+```python
+nx.draw(graph, node_size=10, node_color='C1')
+```
+![Exemplo Rodrigo](https://github.com/FordPrefect12/Projeto---NetworkX.github.io/blob/main/Exemplo%20Rodrigo.png)
+
+```python
+?nx.draw
+```
+    Signature: nx.draw(G, pos=None, ax=None, **kwds)
+    Docstring:
+    Draw the graph G with Matplotlib.
+
+    Draw the graph as a simple representation with no node
+    labels or edge labels and using the full Matplotlib figure area
+    and no axis labels by default.  See draw_networkx() for more
+    full-featured drawing that allows title, axis labels etc.
+
+    Parameters
+    ----------
+    G : graph
+       A networkx graph
+
+    pos : dictionary, optional
+       A dictionary with nodes as keys and positions as values.
+       If not specified a spring layout positioning will be computed.
+       See :py:mod:`networkx.drawing.layout` for functions that
+       compute node positions.
+
+    ax : Matplotlib Axes object, optional
+       Draw the graph in specified Matplotlib axes.
+
+    kwds : optional keywords
+       See networkx.draw_networkx() for a description of optional keywords.
+
+    Examples
+    --------
+    >>> G = nx.dodecahedral_graph()
+    >>> nx.draw(G)
+    >>> nx.draw(G, pos=nx.spring_layout(G))  # use spring layout
+
+    See Also
+    --------
+    draw_networkx()
+    draw_networkx_nodes()
+    draw_networkx_edges()
+    draw_networkx_labels()
+    draw_networkx_edge_labels()
+
+    Notes
+    -----
+    This function has the same name as pylab.draw and pyplot.draw
+    so beware when using `from networkx import *`
+
+    since you might overwrite the pylab.draw function.
+
+    With pyplot use
+
+    >>> import matplotlib.pyplot as plt
+    >>> G = nx.dodecahedral_graph()
+    >>> nx.draw(G)  # networkx draw()
+    >>> plt.draw()  # pyplot draw()
+
+    Also see the NetworkX drawing examples at
+    https://networkx.github.io/documentation/latest/auto_examples/index.html
+    File:      c:\users\rodri\appdata\local\programs\python\python38-32\lib\site-packages\networkx\drawing\nx_pylab.py
+    Type:      function

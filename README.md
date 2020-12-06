@@ -6,4 +6,20 @@ De certo modo grafos são uma estrutura que equivale a um conjunto de objetos no
 
 Agora vamos para o collab apresentar alguns comandos para facilitar o entendimento e depois mostrar e construir alguns grafos para melhor visualização.
 
-![NetworkX_exemplos](https://github.com/FordPrefect12/Projeto---NetworkX.github.io/blob/main/NetworkX_exemplos.ipynb)
+
+
+## Exemplo 1:
+- Os vértices de um grafo são os nodes
+- A relação entre os nodes são os edges
+```python
+import networkx as nx
+G = nx.Graph()
+G.add_node('N1')
+G.add_node('N2')
+G.add_node('N3')
+G.add_edge('N1', 'N2') # Adicionar uma relação entre o node 'N1' e 'N2'
+G.add_edge('N3', 'N4') # Adicionar uma relação entre o node 'N3' e um node que até agora ainda não existia
+nx.draw(G, with_labels=1)
+```
+![Exemplo 1](https://github.com/FordPrefect12/Projeto---NetworkX.github.io/blob/main/Exemplo%201.png)
+

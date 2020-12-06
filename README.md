@@ -34,7 +34,7 @@ print(nx.info(G)) # Alternativa para não precisar usar um comando para cada inf
     Number of nodes: 4
     Number of edges: 2
     Average degree:   1.0000
-    
+
 ## Exemplo 2:
 - Criar um grafo com um número de nodes pré-determinado e conectados entre si, em ordem crescente
 ```python

@@ -6,4 +6,4 @@ De certo modo grafos são uma estrutura que equivale a um conjunto de objetos no
 
 Agora vamos para o collab apresentar alguns comandos para facilitar o entendimento e depois mostrar e construir alguns grafos para melhor visualização.
 
-git add NetworkX_exemplos.ipynb
+!git add NetworkX_exemplos.ipynb

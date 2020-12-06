@@ -108,3 +108,106 @@ import numpy as np
 print(np.average(total_of_edges))
 ```
     22.4839
+    
+## Exemplos aplicados:
+### Tentativa 1 (Excel):
+```python
+import networkx as nx
+import pandas as pd
+dfs = pd.read_excel("Twitter.xlsx", sheet_name = ["Elementos", "Perfil", "Conexoes", "Conexoes2"])
+node_data = dfs["Elementos"]
+edge_data = dfs["Perfil"]
+edge_data1 = dfs["Conexoes"]
+edge_data2 = dfs["Conexoes2"]
+
+A = nx.from_pandas_edgelist(edge_data, source = 'Perfil1', target = 'Seguindo1')
+B = nx.from_pandas_edgelist(edge_data1, source = 'Seguindo', target = 'Recomendado')
+C = nx.from_pandas_edgelist(edge_data2, source = 'Recomendado1', target = 'Recomendado2')
+U = nx.compose(A, B)
+Z = nx.compose(U,C)
+```
+
+```python
+nx.draw_shell(Z, with_labels=True)
+```
+![Tentativa 1](https://github.com/FordPrefect12/Projeto---NetworkX.github.io/blob/main/Tentativa%201.png)
+
+```python
+print(nx.info(Z))
+```
+    Name: 
+    Type: Graph
+    Number of nodes: 12
+    Number of edges: 17
+    Average degree:   2.8333
+
+```python
+Z.add_node('Renan', weight= 0.4)
+Z.add_node('Leonardo', weight= 0.6)
+Z.add_node('Felipe', weight= 0.2)
+Z.add_node('Bruna', weight= 0.1)
+Z.add_node('Fabiano', weight= 0.4)
+Z.add_node('Roberto', weight= 0.1)
+Z.add_node('Rodrigo', weight= 0)
+Z.add_node('Ana', weight= 0)
+Z.add_node('Alice', weight= 0)
+Z.add_node('Arthur', weight= 0)
+Z.add_node('Pedro', weight= 0)
+print(Z.nodes.data())
+```
+    [('Eduardo', {}), ('Arthur', {'weight': 0}), ('Rodrigo', {'weight': 0}), ('Ana', {'weight': 0}), ('Alice', {'weight': 0}), ('Pedro', {'weight': 0}), ('Leonardo', {'weight': 0.6}), ('Renan', {'weight': 0.4}), ('Fabiano', {'weight': 0.4}), ('Felipe', {'weight': 0.2}), ('Roberto', {'weight': 0.1}), ('Bruna', {'weight': 0.1})]
+
+### Tentativa 2:
+
+```python
+H = nx.Graph()
+H.add_nodes_from(['Eduardo', 'Arthur','Rodrigo', 'Ana', 'Alice', 'Pedro', 'Renan', 'Leonardo', 'Felipe', 'Bruna', 'Fabiano'])
+H.add_edge('Eduardo', 'Arthur')
+H.add_edge('Eduardo','Rodrigo')
+H.add_edge('Eduardo','Ana')
+H.add_edge('Eduardo','Alice')
+H.add_edge('Eduardo','Pedro')
+H.add_edge('Arthur','Leonardo')
+H.add_edge('Arthur','Pedro')
+H.add_edge('Arthur','Rodrigo')
+H.add_edge('Arthur','Renan')
+H.add_edge('Rodrigo','Leonardo')
+H.add_edge('Ana','Leonardo')
+H.add_edge('Ana','Fabiano')
+H.add_edge('Ana','Felipe')
+H.add_edge('Alice','Fabiano')
+H.add_edge('Pedro','Renan')
+H.add_edge('Felipe','Roberto')
+H.add_edge('Felipe','Bruna')
+
+H.add_node('Renan', weight= 0.4)
+H.add_node('Leonardo', weight= 0.6)
+H.add_node('Felipe', weight= 0.2)
+H.add_node('Bruna', weight= 0.1)
+H.add_node('Fabiano', weight= 0.4)
+H.add_node('Roberto', weight= 0.1)
+H.add_node('Rodrigo', weight= 0)
+H.add_node('Ana', weight= 0)
+H.add_node('Alice', weight= 0)
+H.add_node('Arthur', weight= 0)
+H.add_node('Pedro', weight= 0)
+```
+
+```python
+nx.draw(H, with_labels=True)
+```
+![Tentativa 2](https://github.com/FordPrefect12/Projeto---NetworkX.github.io/blob/main/Tentativa%202.png)
+
+```python
+print(nx.info(H))
+```
+    Name: 
+    Type: Graph
+    Number of nodes: 12
+    Number of edges: 17
+    Average degree:   2.8333
+
+```python
+print(H.nodes.data())
+```
+    [('Eduardo', {}), ('Arthur', {'weight': 0}), ('Rodrigo', {'weight': 0}), ('Ana', {'weight': 0}), ('Alice', {'weight': 0}), ('Pedro', {'weight': 0}), ('Renan', {'weight': 0.4}), ('Leonardo', {'weight': 0.6}), ('Felipe', {'weight': 0.2}), ('Bruna', {'weight': 0.1}), ('Fabiano', {'weight': 0.4}), ('Roberto', {'weight': 0.1})]

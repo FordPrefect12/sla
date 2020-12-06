@@ -23,7 +23,7 @@ G.add_edge('N3', 'N4') # Adicionar uma relação entre o node 'N3' e um node que
 nx.draw(G, with_labels=1)
 ```
 
-![Exemplo 1](https://github.com/FordPrefect12/NetworkX.github.io/blob/main/Exemplo%201.png)
+![image](https://github.com/FordPrefect12/NetworkX.github.io/blob/main/Exemplo%201.png)
 
 
 ```python
